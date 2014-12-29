@@ -23,7 +23,7 @@ class Configuration implements ConfigurationInterface
 
         $root
             ->children()
-                ->booleanNode('enable')->defaultTrue()->isRequired()->end()
+                ->booleanNode('enable')->defaultTrue()->end()
                 ->scalarNode('db_driver')->cannotBeOverwritten()->isRequired()->end()
                 ->scalarNode('query_service')->cannotBeEmpty()->defaultValue('vich_geographical.query_service.default')->end()
                 ->scalarNode('map_renderer')->cannotBeEmpty()->defaultValue('vich_geographical.map_renderer.google')->end()
