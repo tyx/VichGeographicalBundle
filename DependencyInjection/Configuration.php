@@ -6,23 +6,24 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 /**
  * Configuration.
- * 
+ *
  * @author Dustin Dobervich <ddobervich@gmail.com>
  */
 class Configuration implements ConfigurationInterface
 {
     /**
      * Gets the configuration tree builder for the extension.
-     * 
+     *
      * @return Tree The configuration tree builder
      */
     public function getConfigTreeBuilder()
     {
         $tb = new TreeBuilder();
         $root = $tb->root('vich_geographical');
-        
+
         $root
             ->children()
+                ->booleanNode('enable')->defaultTrue()->isRequired()->end()
                 ->scalarNode('db_driver')->cannotBeOverwritten()->isRequired()->end()
                 ->scalarNode('query_service')->cannotBeEmpty()->defaultValue('vich_geographical.query_service.default')->end()
                 ->scalarNode('map_renderer')->cannotBeEmpty()->defaultValue('vich_geographical.map_renderer.google')->end()
@@ -48,7 +49,7 @@ class Configuration implements ConfigurationInterface
                 ->end()
             ->end()
         ;
-        
+
         return $tb;
     }
 }
